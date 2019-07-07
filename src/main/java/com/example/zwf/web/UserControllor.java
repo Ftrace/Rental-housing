@@ -16,7 +16,7 @@ public class UserControllor {
     @Autowired
     UserService userService;
     /**
-     * 通过区域Id获取区域信息
+     * 通过区域Id获取用户信息
      *
      * @return
      */
@@ -24,9 +24,9 @@ public class UserControllor {
     private Map<String, Object> getUserByEmail(String message , HttpServletResponse response) {
         response.addHeader("Access-Control-Allow-Origin", "*");
         Map<String, Object> modelMap = new HashMap<String, Object>();
-        // 获取区域信息
+        // 获取用户信息
         User user = userService.getUserByEmail(message);
-        System.out.println(message);
+        System.out.println("用户Id"+message);
         modelMap.put("message", user);
         return modelMap;
     }

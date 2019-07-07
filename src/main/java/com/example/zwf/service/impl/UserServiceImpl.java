@@ -27,19 +27,24 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean addUser1(String email,String password,String ensure,String userName,String pnumber){
+    public boolean addUser1(String email,String password,String ensure,String name,String number,String identity){
         User user1 = new User();
         user1.setEmail(email);
         user1.setPassword(password);
         user1.setEnsure(ensure);
-        user1.setUserName(userName);
-        user1.setPnumber(pnumber);
+        user1.setName(name);
+        user1.setNumber(number);
+        user1.setIdentity(identity);
         if(email==null||"".equals(email)) {
+            System.out.println("邮箱不能为空！");
             throw new RuntimeException("邮箱不能为空！");
 
+
         } else if(!password.equals(ensure)){
+            System.out.println("密码不一致！");
             throw new RuntimeException("密码不一致！");
         } else if(userdao.queryUserByEmail(email)!=null){
+            System.out.println("该用户已存在！");
             throw new RuntimeException("该用户已存在！");
         }
         else  {
