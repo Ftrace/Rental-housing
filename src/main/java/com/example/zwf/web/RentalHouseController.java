@@ -7,9 +7,12 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
@@ -176,6 +179,34 @@ public class RentalHouseController {
         modelMap.put("message", list);
         return modelMap;
     }
+//    @RequestMapping(value = "/uploadRentalHouse",method = RequestMethod.PUT )
+//    public Map<String, Object> editAvatar(
+//            @RequestParam("file") MultipartFile file, HttpServletResponse response) {
+//        response.addHeader("Access-Control-Allow-Origin", "*");
+//        Map<String, Object> modelMap = new HashMap<>();
+//        if (file.isEmpty()) {
+//            modelMap.put("message", "文件为空");
+//            return modelMap;
+//        }
+//        String path = "D:/data/";
+//        File serverFile = new File(path + file.getOriginalFilename());
+//        File dir = new File(path);
+//        System.out.println("开始上传");
+//        if (!dir.exists()) {
+//            dir.mkdir();
+//        }
+//        try {
+//            file.transferTo(serverFile);
+//        } catch (IOException e) {
+//            System.out.println("上传失败");
+//            e.printStackTrace();
+//            modelMap.put("message", "上传失败");
+//            return modelMap;
+//        }
+//        modelMap.put("message", "localhost:8082/D:/data/" + file.getOriginalFilename());
+//        return modelMap;
+////        return ResultMap.success("http://192.168.3.96:8081/api/avatar/" + file.getOriginalFilename());
+//    }
 
 }
 
