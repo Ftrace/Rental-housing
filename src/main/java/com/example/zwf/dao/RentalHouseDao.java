@@ -22,6 +22,13 @@ public interface RentalHouseDao {
     List<RentalHouse> queryRentalHouseByEmail(String email);
 
     /**
+     * 根据出租屋id查找出租屋信息
+     * @param id
+     * @return
+     */
+    RentalHouse queryRentalHouseById(int id);
+
+    /**
      * 增加出租屋信息
      *
      * @param rentalHouse
@@ -51,6 +58,11 @@ public interface RentalHouseDao {
     List<RentalHouse> queryRentalHouseByPrice(int minPrice, int maxPrice);
 
     /**
+     * 根据价格列出出租屋信息
+     */
+    List<RentalHouse> queryRentalHouseByOnePrice(int price);
+
+    /**
      * 根据位置列出出租屋信息
      */
     List<RentalHouse> queryRentalHouseByLocation(String location);
@@ -59,5 +71,11 @@ public interface RentalHouseDao {
      * 根据面积范围列出出租屋信息
      */
     List<RentalHouse> queryRentalHouseByArea(int minArea, int maxArea);
+
+
+    /**
+     * 根据面积列出出租屋信息
+     */
+    List<RentalHouse> queryRentalHouseByOneArea(int area);
 
 }

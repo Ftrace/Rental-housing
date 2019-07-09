@@ -1,6 +1,7 @@
 package com.example.zwf.service.impl;
 
 import com.example.zwf.dao.UserDao;
+import com.example.zwf.entity.RentalHouse;
 import com.example.zwf.entity.User;
 import com.example.zwf.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,7 @@ public class UserServiceImpl implements UserService {
         return false;
     }
 
+    @Transactional
     @Override
     public boolean addUser1(String email,String password,String ensure,String name,String number,String identity){
         User user1 = new User();
@@ -81,5 +83,39 @@ public class UserServiceImpl implements UserService {
             }
         }
 
+    }
+
+    @Transactional
+    @Override
+    public boolean modifyUser(String email,String password,String name,String number,String nickname,String hobby,String wechat,String type,String ID){
+        User user = new User();
+        user.setEmail(email);
+        user.setPassword(password);
+        user.setEnsure(password);
+        user.setName(name);
+        user.setNumber(number);
+        user.setNickname(nickname);
+        user.setHobby(hobby);
+        user.setWechat(wechat);
+        user.setType(type);
+        user.setID(ID);
+
+        if (email!= null && !"".equals(email))
+
+        {
+
+            try {
+                int effectedNum = userdao.updateUser(user);
+                if (effectedNum > 0) {
+                    return true;
+                } else {
+                    throw new RuntimeException("更新用户信息失败!");
+                }
+            } catch (Exception e) {
+                throw new RuntimeException("更新用户信息失败:" + e.toString());
+            }
+        } else {
+            throw new RuntimeException("email为空！请填写email");
+        }
     }
 }

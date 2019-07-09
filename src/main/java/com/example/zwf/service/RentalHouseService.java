@@ -61,5 +61,25 @@ public interface RentalHouseService {
      */
     List<RentalHouse> getRentalHouseByArea(int minArea, int maxArea);
 
+    /**
+     * 根据Id获取出租屋信息
+     */
+    RentalHouse getRentalHouseById(int id);
+
+    /**
+     * 根据价格获取出租屋信息
+     * @param price
+     * @return
+     */
+    List<RentalHouse> getRentalHouseByOnePrice(int price);
+
+
+    /**
+     * 根据面积获取出租屋信息
+     * @param area
+     * @return
+     */
+    List<RentalHouse> getRentalHouseByOneArea(int area);
+
 
 }

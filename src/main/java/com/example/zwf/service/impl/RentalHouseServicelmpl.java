@@ -24,6 +24,36 @@ public class RentalHouseServicelmpl implements RentalHouseService {
         return rentalHouseDao.queryRentalHouseByEmail(email);
     }
 
+    /**
+     * 根据Id获取出租屋信息
+     */
+    @Override
+    public RentalHouse getRentalHouseById(int id) {
+        return rentalHouseDao.queryRentalHouseById(id);
+    }
+
+    /**
+     * 根据价格获取出租屋信息
+     * @param price
+     * @return
+     */
+    @Override
+    public List<RentalHouse> getRentalHouseByOnePrice(int price) {
+        return rentalHouseDao.queryRentalHouseByOnePrice(price);
+    }
+
+
+    /**
+     * 根据面积列出出租屋信息
+     * @param area
+     * @return
+     */
+    @Override
+    public List<RentalHouse> getRentalHouseByOneArea(int area) {
+        return rentalHouseDao.queryRentalHouseByOneArea(area);
+    }
+
+
     @Transactional
     @Override
     public boolean addRentalHouse(String email, String name,String rname,  String location, int area, int price, String number, String oriented, String houseType, String introduction, String wechat) {
