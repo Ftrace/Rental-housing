@@ -1,7 +1,5 @@
 package com.example.zwf.web;
 
-
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -14,6 +12,11 @@ import javax.servlet.http.HttpServletResponse;
 
 public class FileController {
 
+    /**
+     * 通过照片名字查看图片
+     * @param name
+     * @param response
+     */
     @RequestMapping("/avatar/{name:.+}")
     public void getAvatar(@PathVariable("name")String name,
                           HttpServletResponse response){
@@ -39,6 +42,11 @@ public class FileController {
     }
 
 
+    /**
+     * 上传图片
+     * @param file
+     * @param response
+     */
     @RequestMapping(value = "/uploadRentalHouse")
     public void editAvatar(
             @RequestParam("file") MultipartFile file, HttpServletResponse response) {

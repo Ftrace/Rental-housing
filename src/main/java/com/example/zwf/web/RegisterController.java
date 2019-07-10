@@ -18,6 +18,19 @@ import java.util.Map;
         @Autowired
         UserService userService;
 
+        /**
+         * 用户注册
+         * @param email
+         * @param password
+         * @param ensure
+         * @param name
+         * @param number
+         * @param identity
+         * @param response
+         * @return
+         * @throws JsonMappingException
+         * @throws IOException
+         */
         @RequestMapping(value= "/register", method = RequestMethod.POST)
         public Map<String, Object> register(String email,String password,String ensure,String name,String number,String identity,HttpServletResponse response)
                 throws JsonMappingException, IOException {

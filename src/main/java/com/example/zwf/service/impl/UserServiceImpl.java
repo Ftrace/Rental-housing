@@ -14,10 +14,22 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserDao userdao;
 
+    /**
+     * 通过email获取用户的信息
+     * @param email
+     * @return
+     */
     @Override
     public User getUserByEmail(String email) {
         return userdao.queryUserByEmail(email);
     }
+
+    /**
+     * 登录判断
+     * @param email
+     * @param password
+     * @return
+     */
     @Override
     public boolean login(String email, String password) {
         User user = userdao.selectUser(email,password);
@@ -27,6 +39,16 @@ public class UserServiceImpl implements UserService {
         return false;
     }
 
+    /**
+     * 注册判断
+     * @param email
+     * @param password
+     * @param ensure
+     * @param name
+     * @param number
+     * @param identity
+     * @return
+     */
     @Transactional
     @Override
     public boolean addUser1(String email,String password,String ensure,String name,String number,String identity){
@@ -63,6 +85,7 @@ public class UserServiceImpl implements UserService {
             }
                 }
     }
+
     @Transactional
     @Override
     public boolean addUser(User user) {
@@ -85,6 +108,19 @@ public class UserServiceImpl implements UserService {
 
     }
 
+    /**
+     * 更新用户信息
+     * @param email
+     * @param password
+     * @param name
+     * @param number
+     * @param nickname
+     * @param hobby
+     * @param wechat
+     * @param type
+     * @param ID
+     * @return
+     */
     @Transactional
     @Override
     public boolean modifyUser(String email,String password,String name,String number,String nickname,String hobby,String wechat,String type,String ID){

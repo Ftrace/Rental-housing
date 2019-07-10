@@ -28,7 +28,7 @@
 	</select>
 
 	<!--添加用户-->
-	<insert id="insertUser" useGeneratedKeys="true"  parameterType="com.example.zwf.entity.User">
+	<insert id="insertUser"  parameterType="com.example.zwf.entity.User">
 		INSERT INTO
 		tb_user(email, password, ensure, name, number,identity)
 		VALUES

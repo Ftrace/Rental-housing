@@ -162,22 +162,6 @@ public class RentalHouseController {
 
         boolean judge = rentalHouseService.modifyRentalHouse(id,email,name,rname,location,area,price,number,
                 oriented,houseType,introduction,wechat);
-//        Map<String, Object> modelMap = new HashMap<String, Object>();
-//        RentalHouse rentalHouse = new RentalHouse();
-//        rentalHouse.setId(id);
-//        rentalHouse.setEmail(email);
-//        rentalHouse.setRname(rname);
-//        rentalHouse.setName(name);
-//        rentalHouse.setLocation(location);
-//        rentalHouse.setArea(area);
-//        rentalHouse.setPrice(price);
-//        rentalHouse.setNumber(number);
-//        rentalHouse.setOriented(oriented);
-//        rentalHouse.setHouseType(houseType);
-//        rentalHouse.setIntroduction(introduction);
-//        rentalHouse.setWechat(wechat);
-//        modelMap.put("success",judge);
-//        modelMap.put("更新后出租屋信息",rentalHouse);
         return judge;
     }
 
@@ -295,36 +279,6 @@ public class RentalHouseController {
         return rentalHouse;
     }
 
-
-//    @RequestMapping(value = "/uploadRentalHouse",method = RequestMethod.PUT )
-//    public Map<String, Object> editAvatar(
-//            @RequestParam("file") MultipartFile file, HttpServletResponse response) {
-//        response.addHeader("Access-Control-Allow-Origin", "*");
-//        Map<String, Object> modelMap = new HashMap<>();
-//        if (file.isEmpty()) {
-//            modelMap.put("message", "文件为空");
-//            return modelMap;
-//        }
-//        String path = "D:/data/";
-//        File serverFile = new File(path + file.getOriginalFilename());
-//        File dir = new File(path);
-//        System.out.println("开始上传");
-//        if (!dir.exists()) {
-//            dir.mkdir();
-//        }
-//        try {
-//            file.transferTo(serverFile);
-//        } catch (IOException e) {
-//            System.out.println("上传失败");
-//            e.printStackTrace();
-//            modelMap.put("message", "上传失败");
-//            return modelMap;
-//        }
-//        modelMap.put("message", "localhost:8082/D:/data/" + file.getOriginalFilename());
-//        return modelMap;
-////        return ResultMap.success("http://192.168.3.96:8081/api/avatar/" + file.getOriginalFilename());
-//    }
-
     @RequestMapping(value = "/getRentalHouseByGeneric", method = RequestMethod.GET)
     public List<RentalHouse> getRentalHouseByGeneric(String generic,HttpServletResponse response) {
         response.addHeader("Access-Control-Allow-Origin", "*");
@@ -351,6 +305,65 @@ public class RentalHouseController {
             list = rentalHouseService.getRentalHouseByLocation(generic);
             return list;
         }
+    }
+
+
+    /**
+     * 房客更新出租屋状态：未出租——待审核
+     * @param id
+     * @param response
+     * @return
+     */
+    @RequestMapping(value = "/updateRentalHouseState1", method = RequestMethod.POST)
+    private boolean updateRentalHouseState1(String tenantEmail,String id,HttpServletResponse response) {
+        response.addHeader("Access-Control-Allow-Origin", "*");
+        System.out.println("房客" + tenantEmail + "申请Id=" + id + "的出租屋");
+        boolean judge=rentalHouseService.updateRentalHouseState1(tenantEmail,Integer.parseInt(id));
+        return judge;
+    }
+
+    /**
+     * 房东更新出租屋状态：待审核——已出租
+     * @param id
+     * @param response
+     * @return
+     */
+    @RequestMapping(value = "/updateRentalHouseState2", method = RequestMethod.POST)
+    private boolean updateRentalHouseState2(String id,HttpServletResponse response) {
+        response.addHeader("Access-Control-Allow-Origin", "*");
+        System.out.println("房东同意出租Id="+id+"出租屋");
+        boolean judge=rentalHouseService.updateRentalHouseState2(Integer.parseInt(id));
+        return judge;
+    }fghjk
+
+    /**
+     *      * 房客获取申请过的出租屋信息
+     *      * @param email
+     *      * @param response
+     *      * @return
+     */
+    @RequestMapping(value = "/getRentalHouseToTenant", method = RequestMethod.GET)
+    private List<RentalHouse> getRentalHouseToTenant(String tenantEmail,HttpServletResponse response) {
+        response.addHeader("Access-Control-Allow-Origin", "*");
+        System.out.println("获取房客" + tenantEmail + "申请过的出租屋信息");
+        List<RentalHouse> list = rentalHouseService.getRentalHouseToTenant(tenantEmail);
+        System.out.println(list);
+        return list;
+    }
+
+    /**
+     * 房东获取被申请过的出租屋信息
+     * @param email
+     * @param response
+     * @return
+     */
+    @RequestMapping(value = "/getRentalHouseToLandlord", method = RequestMethod.GET)
+    private List<RentalHouse> getRentalHouseToLandlord(String email,HttpServletResponse response) {
+        response.addHeader("Access-Control-Allow-Origin", "*");
+        List<RentalHouse> list = rentalHouseService.getRentalHouseToLandlord(email);
+        System.out.println("获取房客" + email + "申请过的出租屋信息");
+        System.out.println(list);
+        return list;
     }
 
 

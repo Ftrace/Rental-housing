@@ -18,6 +18,16 @@ public class UserLoginController {
     @Autowired
     UserService userService;
 
+    /**
+     * 用户登录
+     * @param email
+     * @param password
+     * @param response
+     * @return
+     * @throws JsonParseException
+     * @throws JsonMappingException
+     * @throws IOException
+     */
     @RequestMapping("/login")
     public boolean login (String email, String password, HttpServletResponse response) throws JsonParseException, JsonMappingException, IOException {
         response.addHeader("Access-Control-Allow-Origin", "*");

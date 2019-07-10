@@ -13,7 +13,8 @@ public class RentalHouse {
     private String houseType;
     private String introduction;
     private String wechat;
-
+    private String state;
+    private String tenantEmail;
 
     public int getId() {
         return id;
@@ -109,5 +110,21 @@ public class RentalHouse {
 
     public void setWechat(String wechat) {
         this.wechat = wechat;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getTenantEmail() {
+        return tenantEmail;
+    }
+
+    public void setTenantEmail(String tenantEmail) {
+        this.tenantEmail = tenantEmail;
     }
 }
