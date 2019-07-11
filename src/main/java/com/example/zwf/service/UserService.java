@@ -37,7 +37,7 @@ public interface UserService {
     /**
      *用户登录
      */
-    boolean login(String email,String password);
+    String login(String email,String password);
 
 
     /**

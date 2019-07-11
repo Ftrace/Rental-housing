@@ -121,4 +121,21 @@ public interface RentalHouseDao {
      */
     List<RentalHouse> getRentalHouseToLandlord(String email);
 
+    /**
+     * 房客更新出租屋信息
+     * 取消申请
+     * @param rentalHouse
+     * @return
+     */
+    int cancelRentalHouseState1(RentalHouse rentalHouse);
+
+    /**
+     * 房主更新出租屋信息
+     * 拒绝出租
+     * @param rentalHouse
+     * @return
+     */
+    int cancelRentalHouseState2(RentalHouse rentalHouse);
+
+
 }

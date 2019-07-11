@@ -4,6 +4,7 @@ import com.example.zwf.dao.UserDao;
 import com.example.zwf.entity.RentalHouse;
 import com.example.zwf.entity.User;
 import com.example.zwf.service.UserService;
+import com.sun.xml.internal.bind.v2.model.core.ID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,15 +29,25 @@ public class UserServiceImpl implements UserService {
      * 登录判断
      * @param email
      * @param password
-     * @return
+     * @return string
      */
     @Override
-    public boolean login(String email, String password) {
-        User user = userdao.selectUser(email,password);
-        if (user != null){
-            return true;
+    public String login(String email, String password) {
+        String identity = userdao.selectUser(email,password);
+        User user = new User();
+        user = userdao.queryUserByEmail(email);
+        String password1=user.getPassword();
+        if(user==null)
+            return "null";
+        if(password.equals(password1)) {
+            if (identity != null){
+                return identity;
+            }
+            return "null";
+        }else {
+            return "密码错误";
         }
-        return false;
+
     }
 
     /**
@@ -123,7 +134,8 @@ public class UserServiceImpl implements UserService {
      */
     @Transactional
     @Override
-    public boolean modifyUser(String email,String password,String name,String number,String nickname,String hobby,String wechat,String type,String ID){
+    public boolean modifyUser(String email,String password,String name,String number,String nickname,String hobby,String wechat,String type,String
+        ID){
         User user = new User();
         user.setEmail(email);
         user.setPassword(password);

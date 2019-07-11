@@ -17,6 +17,7 @@ public class RentalHouse {
     private String tenantEmail;
 
     public int getId() {
+
         return id;
     }
 

@@ -41,6 +41,5 @@ import java.util.Map;
             modelMap.put("success",userService.addUser1(email,password,ensure,name,number,identity));
 
             return modelMap;
-
     }
 }

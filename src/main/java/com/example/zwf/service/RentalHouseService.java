@@ -130,4 +130,23 @@ public interface RentalHouseService {
      * @return
      */
     List<RentalHouse> getRentalHouseToTenant(String email);
+
+
+    /**
+     * 房客改变房屋状态
+     * 拒绝申请
+     * @param id
+     * @return
+     */
+    boolean cancelRentalHouseState1(int id);
+
+
+    /**
+     * 房主更新出租屋信息
+     * 拒绝出租
+     * @param id
+     * @return
+     */
+    boolean cancelRentalHouseState2(int id);
+
 }

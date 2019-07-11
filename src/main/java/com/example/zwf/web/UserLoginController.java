@@ -19,7 +19,7 @@ public class UserLoginController {
     UserService userService;
 
     /**
-     * 用户登录
+     * 用户登录，返回用户身份
      * @param email
      * @param password
      * @param response
@@ -29,15 +29,13 @@ public class UserLoginController {
      * @throws IOException
      */
     @RequestMapping("/login")
-    public boolean login (String email, String password, HttpServletResponse response) throws JsonParseException, JsonMappingException, IOException {
+    public String login (String email, String password, HttpServletResponse response) throws JsonParseException, JsonMappingException, IOException {
         response.addHeader("Access-Control-Allow-Origin", "*");
-        boolean login=userService.login(email, password);
+        String login=userService.login(email, password);
         System.out.println("登陆");
         System.out.println("email: " + email);
         System.out.println("password: " + password);
-        Map<String, Object> modelMap = new HashMap<String, Object>();
-        modelMap.put("success",login);
-        System.out.println("登陆结果: "+login);
+        System.out.println("用户身份："+login);
         return login;
     }
 

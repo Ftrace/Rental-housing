@@ -279,6 +279,12 @@ public class RentalHouseController {
         return rentalHouse;
     }
 
+    /**
+     * 泛式搜索
+     * @param generic
+     * @param response
+     * @return
+     */
     @RequestMapping(value = "/getRentalHouseByGeneric", method = RequestMethod.GET)
     public List<RentalHouse> getRentalHouseByGeneric(String generic,HttpServletResponse response) {
         response.addHeader("Access-Control-Allow-Origin", "*");
@@ -334,7 +340,7 @@ public class RentalHouseController {
         System.out.println("房东同意出租Id="+id+"出租屋");
         boolean judge=rentalHouseService.updateRentalHouseState2(Integer.parseInt(id));
         return judge;
-    }fghjk
+    }
 
     /**
      *      * 房客获取申请过的出租屋信息
@@ -366,9 +372,36 @@ public class RentalHouseController {
         return list;
     }
 
+    /**
+     * 房客取消申请
+     * 更新出租屋状态：待审核——未出租
+     * @param id
+     * @param response
+     * @return
+     */
+    @RequestMapping(value = "/cancelRentalHouseState1", method = RequestMethod.POST)
+    private boolean cancelRentalHouseState1(String id,HttpServletResponse response) {
+        response.addHeader("Access-Control-Allow-Origin", "*");
+        System.out.println("房客取消对Id="+id+"的出租屋的申请");
+        boolean judge = rentalHouseService.cancelRentalHouseState1(Integer.parseInt(id));
+        return judge;
+    }
+
+    /**
+     * 房主拒绝申请
+     * 更新出租屋状态：待审核——审核失败
+     * @param id
+     * @param response
+     * @return
+     */
+    @RequestMapping(value = "/cancelRentalHouseState2", method = RequestMethod.POST)
+    private boolean cancelRentalHouseState2(String id,HttpServletResponse response) {
+        response.addHeader("Access-Control-Allow-Origin", "*");
+        System.out.println("房主拒绝Id="+id+"的出租屋的申请");
+        boolean judge = rentalHouseService.cancelRentalHouseState2(Integer.parseInt(id));
+        return judge;
+    }
+
+
 
 }
-
-
-
-
